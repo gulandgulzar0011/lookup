@@ -378,22 +378,13 @@
         </button>
       </div>
       <p class="hint">Include the country code for the most accurate match.</p>
-      <button class="config-toggle" id="configToggle" disabled>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 1.7 14.14M4.93 19.07a10 10 0 0 1-1.7-14.14M6.34 6.34a10 10 0 0 1 11.32 0M17.66 17.66a10 10 0 0 1-11.32 0"/></svg>
-        Google Sheets sync (locked)
-      </button>
       <div class="config-panel open" id="configPanel">
-        <span class="config-label">Apps Script Web App URL</span>
-        <div class="config-row">
-          <input type="url" id="sheetsUrl" value="https://script.google.com/macros/s/AKfycbySIs-9Eu0LhZmTeFrOXes0lSu3f7llyUIFDYlFMC1jy46atr7EtarpxCHLCedzoGBJpg/exec" disabled autocomplete="off" />
-          <button class="config-btn" id="saveUrlBtn" disabled>Locked</button>
-        </div>
-        <span class="config-label" style="margin-top:16px;">Bearer Token</span>
+        <span class="config-label">Bearer Token</span>
         <div class="config-row">
           <input type="text" id="bearerToken" placeholder="Enter bearer token for API auth" autocomplete="off" />
           <button class="config-btn" id="saveTokenBtn">Save</button>
         </div>
-        <p class="config-note">The bearer token is used to authenticate requests to the verification API. Save it here and it will be stored locally in your browser.</p>
+        <p class="config-note">Enter your bearer token once and it will be stored locally for API requests.</p>
       </div>
     </section>
 
@@ -423,24 +414,14 @@
     const rawArea   = document.getElementById('rawArea');
     const rawLink   = document.getElementById('rawLink');
     const statusTag    = document.getElementById('statusTag');
-    const configToggle = document.getElementById('configToggle');
-    const configPanel  = document.getElementById('configPanel');
-    const sheetsUrlEl  = document.getElementById('sheetsUrl');
     const bearerTokenEl= document.getElementById('bearerToken');
-    const saveUrlBtn   = document.getElementById('saveUrlBtn');
     const saveTokenBtn = document.getElementById('saveTokenBtn');
     const sheetBadge   = document.getElementById('sheetBadge');
 
     const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbySIs-9Eu0LhZmTeFrOXes0lSu3f7llyUIFDYlFMC1jy46atr7EtarpxCHLCedzoGBJpg/exec';
-    const DEFAULT_BEARER_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgyMzk2NDM0LCJpYXQiOjE3ODIxMzcyMzQsImp0aSI6ImZkOTk3MGMwNzg1NzRhYzRiNjE2YTYyNTFhODQwMDhhIiwidXNlcl9pZCI6MTM0Mywic2lkIjoiYTgwYWZkN2MtYzEzZC00NDU1LWExMzMtNGU3MDdjYmU4ZGJiIiwiY29tcGFueV9pZCI6NDcsImRpYWxfbG9vbV9zY29wZV9hbGwiOnRydWUsImRpYWxfbG9vbV9hbGxvd2VkX3RlYW1faWRzIjpbXSwiY2FuX2FkZF9lZGl0X2NhbGxfZmxvd3MiOnRydWUsImlzX2FkbWluIjp0cnVlLCJpc19vd25lciI6ZmFsc2V9.BZyWNcyQ9OY9QPB7pipJr0mqy2XHC2fvp5fRkFydOEY';
-    let bearerToken = localStorage.getItem(TOKEN_STORAGE_KEY) || DEFAULT_BEARER_TOKEN;
+    let bearerToken = localStorage.getItem(TOKEN_STORAGE_KEY) || '';
 
-    sheetsUrlEl.value = SHEETS_URL;
-    sheetsUrlEl.disabled = true;
-    saveUrlBtn.disabled = true;
     bearerTokenEl.value = bearerToken;
-
-    configToggle.disabled = true;
 
     saveTokenBtn.addEventListener('click', () => {
       bearerToken = bearerTokenEl.value.trim();
