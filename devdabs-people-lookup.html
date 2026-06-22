@@ -432,7 +432,8 @@
     const sheetBadge   = document.getElementById('sheetBadge');
 
     const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbySIs-9Eu0LhZmTeFrOXes0lSu3f7llyUIFDYlFMC1jy46atr7EtarpxCHLCedzoGBJpg/exec';
-    let bearerToken = localStorage.getItem(TOKEN_STORAGE_KEY) || '';
+    const DEFAULT_BEARER_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgyMzk2NDM0LCJpYXQiOjE3ODIxMzcyMzQsImp0aSI6ImZkOTk3MGMwNzg1NzRhYzRiNjE2YTYyNTFhODQwMDhhIiwidXNlcl9pZCI6MTM0Mywic2lkIjoiYTgwYWZkN2MtYzEzZC00NDU1LWExMzMtNGU3MDdjYmU4ZGJiIiwiY29tcGFueV9pZCI6NDcsImRpYWxfbG9vbV9zY29wZV9hbGwiOnRydWUsImRpYWxfbG9vbV9hbGxvd2VkX3RlYW1faWRzIjpbXSwiY2FuX2FkZF9lZGl0X2NhbGxfZmxvd3MiOnRydWUsImlzX2FkbWluIjp0cnVlLCJpc19vd25lciI6ZmFsc2V9.BZyWNcyQ9OY9QPB7pipJr0mqy2XHC2fvp5fRkFydOEY';
+    let bearerToken = localStorage.getItem(TOKEN_STORAGE_KEY) || DEFAULT_BEARER_TOKEN;
 
     sheetsUrlEl.value = SHEETS_URL;
     sheetsUrlEl.disabled = true;
